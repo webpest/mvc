@@ -1,18 +1,24 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of App
- *
- * @author Abayomi
- */
 class App {
+    
+    //default controller for the mvc
+    protected $controller = 'home';
+    
+    //default method for the mvc
+    protected $method = 'index';
+    
+    // if parameters are pass through the url
+    protected $params = [];
+    
+    
     public function __construct() {
-        echo 'OK!';
+        $url = $this->parseUrl();
+    }
+    
+    public function parseUrl(){
+        if(isset($_GET['url'])){
+            return $url = explode('/', filter_var(rtrim($_GET['url'],'/'), FILTER_SANITIZE_URL));
+        }
     }
 }
